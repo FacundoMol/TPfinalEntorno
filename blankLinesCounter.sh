@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ARCHIVO=$1
+
+CANTIDADTOTAL=$( cat $1 |  wc -l)
+
+CANTIDADRELLENAS=$( awk "NF" $1 | wc -l)
+
+ESPACIOSVACIOS=$(( $CANTIDADTOTAL - $CANTIDADRELLENAS ))
+
+echo  $ESPACIOSVACIOS 
+
+
