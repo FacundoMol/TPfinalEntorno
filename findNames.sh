@@ -1,8 +1,10 @@
 #!/bin/bash
 # Ejercicio 3
 
+
 touch textodepurado.txt
 touch textonombres.txt
+touch textonombresfinal.txt
 ARCHIVO=$1
 #VA=""
 
@@ -12,7 +14,9 @@ echo $palabra | tr -d [".",";","?","-","_",")","!",",",":"] >> textodepurado.txt
 grep -o  '^[A-Z][a-z]*' textodepurado.txt  >> textonombres.txt
 done
 
-echo $(cat textonombres.txt)
+
+cat textonombres.txt | sort | uniq > textonombresfinal.txt
+echo $(cat textonombresfinal.txt)
 
 #DOCUMENTO=$(cat textodepurado.txt)
 
