@@ -10,7 +10,7 @@ for palabra in $(cat textoprueba.txt); do
 echo $palabra | tr -d [",",".","-",";","!","_","?","?","¿","(",")"] >> textodepurado1.txt
 done
 
-#echo $(cat textodepurado1.txt)
+
 
 for palabra in $(cat textodepurado1.txt);
 do
@@ -21,9 +21,10 @@ do
 done
 
 
-#echo $(cat usodepalabras.txt)
-cat usodepalabras.txt | sort -r -u | head -10 | uniq >> usopalabrasfinal.txt
+
+cat usodepalabras.txt | sort -r -u | head 10 | uniq >> usopalabrasfinal.txt
 echo $(cat usopalabrasfinal.txt)
 
-#rm usodepalabras.txt
-#rm textodepurado1.txt
+rm usodepalabras.txt
+rm textodepurado1.txt
+rm usopalabrasfinal.txt
