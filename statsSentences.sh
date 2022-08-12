@@ -2,55 +2,59 @@
 # Ejercicio 4
 
 
-ARCHIVO=$1
+LINES=$(cat textoprueba.txt)
 CANT_LINEAS=0
 CORTEORACION="[,.?!]"
+CANT_CORTES=0
 CANT_ORACIONES=0
 CANT_LARGA=1
-CANT_CORTA=500
+CANT_CORTA=3
 PROMEDIO=0
 IFS="[.!?]"
 FRASE_LARGA=""
 FRASE_CORTA=""
+LALINEA=0
 
-
-(wc -l textoprueba.txt | tr -d "textoprueba.txt") >> CANT_LINEAS
-
-
+CANT_LINEAS=$(wc -l < textoprueba.txt)
 
 for palabra in $(cat textoprueba.txt); do
         if [[ $palabra =~ $CORTEORACION ]];
         then
-		CANT_ORACIONES=$(( CANT_ORACIONES + 1 ))
+		CANT_CORTES=$(( CANT_CORTES + 1 ))
         fi
 done
 
 
-cat CANT_LINEAS
-CANT_ORACIONES=echo$(( $CANT_ORACIONES + $CANT_LINEAS ))
+CANT_ORACIONES=$(($CANT_CORTES+$CANT_LINEAS))
+CANT_PALABRAS=$(wc --word < textoprueba.txt)
 
-echo $CANT_ORACIONES
 
-while read -r line;
-do
-        for frases in $line;
-        do
-                CANT_PALABRAS=$(($CANT_PALABRAS+1))
-        done
-        if [[ $CANT_PALABRAS -lt $CANT_CORTA ]];
-        then
-                FRASE_CORTA=$line
-                CANT_CORTA=$CANT_PALABRAS
-        if [[ $CANT_PALABRAS -gt $CANT_LARGA ]];
-        then
-                FRASE_LARGA=$line
-                CANT_LARGA=$CANT_PALABRAS
-        fi
-done
+while IFS= read -r line; do
+	LALINEA=$(echo $line | wc -w)
+	if [[ $LALINEA -lt $CANT_CORTA ]]; then
+		echo "dale"
+		FRASE_CORTA=$line
+		CANT_CORTA=$LALINEA
+	fi
+	if [[ $LALINEA -gt $CANT_LARGA ]]; then
+		FRASE_LARGA=$line
+		CANT_LARGA=$LALINEA
+	fi
 
-PROMEDIO=$(( $CANT_CARACTERES / $CANT_PALABRAS))
+done < textoprueba.txt
 
-echo "La frase más corta es $FRASE_CORTA "
-echo "La frase más larga es $FRASE_LARGA "
-echo "El promedio es de $PROMEDIO"
+PROMEDIO=$(($CANT_PALABRAS/$CANT_ORACIONES))
 
+echo "La frase más corta es: " $FRASE_CORTA 
+echo "La frase más larga es: " $FRASE_LARGA
+echo "El promedio es de: " $PROMEDIO
+
+   #if [[ $LALINEA -eq 1 ]]; then
+                #FRASE_CORTA=$line
+                #CANT_CORTA=$LALINEA
+                #else
+                        #if [[ $LALINEA -lt $CANT_CORTA ]]; then
+                                #FRASE_CORTA=$line
+                                #CANT_CORTA=$LALINEA
+                        #fi
+        #fi

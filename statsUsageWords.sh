@@ -17,12 +17,13 @@ do
 	if [[ ${#palabra} -gt 3 ]];
 	then
 		grep -o $palabra textodepurado1.txt | wc -l >> usodepalabras.txt
+		echo $palabra >> usodepalabras.txt
 	fi
 done
 
 
 
-cat usodepalabras.txt | sort -r -u | head 10 | uniq >> usopalabrasfinal.txt
+cat usodepalabras.txt | sort -r -u | head -10 >> usopalabrasfinal.txt
 echo $(cat usopalabrasfinal.txt)
 
 rm usodepalabras.txt
