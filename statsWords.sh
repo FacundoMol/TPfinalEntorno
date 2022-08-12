@@ -9,8 +9,9 @@ CANTIDADCARACTERES=0
 touch textodepurado.txt 
 ARCHIVO=$1
 
-echo $palabra | cut -d [".",",",";","!","_","-","?","¿","(",")"] >> textodepurado.txt
-
+for palabra in $(cat textoprueba.txt); do
+echo $palabra | tr -d [".",",",";","!","_","-","?","¿","(",")"] >> textodepurado.txt
+done
 for palabra in $(cat textodepurado.txt);
 do
 	if [[ ${#palabra} -lt $MASCORTA ]]
@@ -25,7 +26,7 @@ do
 	CONTADOR=$(($CONTADOR + 1))
 done
 
-PROMEDIODELONGITUD=$(($CANTIDADCARACTERES / $CONTADOR))
+PROMEDIODELONGITUD=$(($CANTIDADCARACTERES/$CONTADOR))
 
 echo "La palabra màs larga tiene "$MASLARGA" caracteres"
 echo "La palabra màs corta tiene "$MASCORTA" caracteres"
