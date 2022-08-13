@@ -9,12 +9,12 @@ CANTIDADCARACTERES=0
 touch textodepurado.txt 
 ARCHIVO=$1
 
-for palabra in $(cat textoprueba.txt); do
+for palabra in $ARCHIVO; do
 echo $palabra | tr -d [".",",",";","!","_","-","?","¿","(",")"] >> textodepurado.txt
 done
 for palabra in $(cat textodepurado.txt);
 do
-	if [[ ${#palabra} -lt $MASCORTA ]]
+	if [[ ${#palabra} -lt $MASCORTA ]] && [[ ${#palabra} -ne 0 ]]
 	then
 		MASCORTA=${#palabra}
 	fi
