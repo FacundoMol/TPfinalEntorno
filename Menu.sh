@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARCHIVO=$textoprueba.txt # texto de prueba
+ARCHIVO=textoprueba.txt # texto de prueba
 
 select aplicacion in  statsWords.sh  statsUsageWords.sh findNames.sh statsSentences.sh blankLinesCounter.sh
 
