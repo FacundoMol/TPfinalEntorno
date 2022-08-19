@@ -1,17 +1,12 @@
 #!/bin/bash
 #Ejercicio 1
 
-CONTADOR=0
+
 MASLARGA=2
-MASCORTA=3
+MASCORTA=100
 PROMEDIODELONGITUD=0
 CANTIDADCARACTERES=0
-touch textodepurado.txt 
 ARCHIVO=$1
-
-for palabra in $(cat textoprueba.txt); do
-echo $palabra | tr -d [".",",",";","!","-","?","(",")"] >> textodepurado.txt
-done
 
 
 for i in $(cat textoprueba.txt);
@@ -38,7 +33,7 @@ echo "La palabra màs larga tiene "$MASLARGA" caracteres"
 echo "La palabra màs corta tiene "$MASCORTA" caracteres"
 echo "El promedio de las palabras del texto tiene "$PROMEDIODELONGITUD" caracteres" 
 
-rm textodepurado.txt
+
 
 
 
