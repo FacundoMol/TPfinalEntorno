@@ -2,31 +2,37 @@
 #Ejercicio 1
 
 CONTADOR=0
-MASLARGA=0
-MASCORTA=2
+MASLARGA=2
+MASCORTA=3
 PROMEDIODELONGITUD=0
 CANTIDADCARACTERES=0
 touch textodepurado.txt 
 ARCHIVO=$1
 
-for palabra in $ARCHIVO; do
-echo $palabra | tr -d [".",",",";","!","_","-","?","¿","(",")"] >> textodepurado.txt
-done
-for palabra in $(cat textodepurado.txt);
-do
-	if [[ ${#palabra} -lt $MASCORTA ]] && [[ ${#palabra} -ne 0 ]]
-	then
-		MASCORTA=${#palabra}
-	fi
-	if [[ ${#palabra} -gt $MASLARGA ]]
-	then 
-		MASLARGA=$(( ${#palabra} ))
-	fi
-	CANTIDADCARACTERES=$(($CANTIDADCARACTERES + ${#palabra}))
-	CONTADOR=$(($CONTADOR + 1))
+for palabra in $(cat textoprueba.txt); do
+echo $palabra | tr -d [".",",",";","!","-","?","(",")"] >> textodepurado.txt
 done
 
-PROMEDIODELONGITUD=$(($CANTIDADCARACTERES/$CONTADOR))
+
+for i in $(cat textoprueba.txt);
+do
+	palabra=$(echo ${#i})
+	if [[ $palabra -gt $MASLARGA ]];
+        then
+                MASLARGA=$(($palabra))
+        fi
+
+	if [[ $palabra -lt $MASCORTA ]] && [[ $palabra -gt 1 ]];
+	then
+		MASCORTA=$(($palabra))
+	fi
+
+	CANTIDADCARACTERES=$(($CANTIDADCARACTERES + $palabra))
+	
+done
+
+CANT_PALABRAS=$(wc -w < textoprueba.txt)
+PROMEDIODELONGITUD=$(($CANTIDADCARACTERES/$CANT_PALABRAS))
 
 echo "La palabra màs larga tiene "$MASLARGA" caracteres"
 echo "La palabra màs corta tiene "$MASCORTA" caracteres"
