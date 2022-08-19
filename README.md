@@ -30,3 +30,7 @@ Indicador estadístico de longitud de oraciones (la más corta, la más larga y 
 
 5. blankLinesCounter.sh
 Contador de líneas en blanco.
+
+poweroff
+
+Felicitaciones Facundo, aprobaste!
